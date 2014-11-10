@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>notespace</title>
+    <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/lib/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="css/lib/jstree/themes/default/style.min.css" rel="stylesheet" />
+    <link href="css/lib/bootstrap-editor/bootstrap3-wysihtml5.min.css" rel="stylesheet" />
+    <link href="css/lib/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/notespace.layout.css" rel="stylesheet" />
+    <link href="css/notespace.extensions.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <% if (!user) { %>
+        <p>
+            <a href="/">Home</a> |
+            <a href="/login">Log In</a>
+        </p>
+        <% } else { %>
+        <p>
+            <a href="/">Home</a> |
+            <a href="/account">Account</a> |
+            <a href="/logout">Log Out</a>
+        </p>
+        <% } %>
+        <script src="script/lib/head.js/1.0.0/head.min.js" data-headjs-load="script/init.js"></script>
+        <%- body %>
+    </div>
+</body>
+</html>
