@@ -1,0 +1,22 @@
+<% if (user) { %>
+<div class="page-header"><h2><%=model.name %></h2><span class="text-info"><%=model.path %></span></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <textarea id="editor" class="container document-editor">
+                <%= model.html %>
+            </textarea>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    head.ready(function () {
+        
+        // Editor
+        $('#editor').wysihtml5();
+        $('#editor').html(model.html);
+
+    });
+</script>
+<% } %>

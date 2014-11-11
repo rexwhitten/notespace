@@ -102,6 +102,61 @@ app.get('/account', ensureAuthenticated, function (req, res) {
     res.render('account', { user: req.user });
 });
 
+app.get('/editor', ensureAuthenticated, function (req, res) {
+    var model = {};
+
+    model.name = "Document 1";
+    model.path = 'User/documents/document_1';
+    model.html = "<h1>My Awesome Document</h1> <p>this is really neat</p>";
+
+    res.render('editor/editor', { user: req.user, model: model });
+});
+
+app.get('/documents', ensureAuthenticated, function (req, res) {
+    var documents = {};
+
+    documents["/document_1"] = "this is document 1";
+    documents["/document_2"] = "this is document 2";
+    documents["/document_3"] = "this is document 3";
+    documents["/document_4"] = "this is document 4";
+    documents["/document_5"] = "this is document 5";
+    
+    res.render('list/list', { model : documents, user: req.user });
+});
+
+
+app.get('/api/directory', ensureAuthenticated, function (req, res) {
+    var model = [];
+    model.user = req.user;
+
+    
+    // Load User Directory from Databanks
+    model = [{
+        "id": 1,
+        "text": "User",
+        "children": [
+          {
+              "id": 3,
+              "text": "Documents",
+              "path": "/my/documents",
+              "type": "list",
+              "children": [
+                  {
+                      "id" : 31,
+                      "text": "Document Title",
+                      "path": "/my/documents/document1",
+                      "html": "<h1>Title</h1> <p>This is my awesome document </p>",
+                      "type": "resource",
+                  }
+              ]
+          },
+        ]
+    }]
+    
+    res.json(model);
+});
+
+
 app.get('/login', function (req, res) {
     res.render('login', { user: req.user, message: req.flash('error') });
 });

@@ -27,6 +27,7 @@ Application.routes = {
 }
 
 head.load(
+    'script/app/app.api.js',
     'script/app/app.user.js',
     'script/app/app.tree.js',
     'script/app/app.editor.js',
